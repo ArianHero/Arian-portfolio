@@ -1,0 +1,18 @@
+{% extends "shop/base.html" %}
+{% block title %}{% include 'shop/contact-heading.html' %} | مستر بیلیارد{% endblock %}
+{% block content %}<div class="contact-room"><section class="shell contact-layout" id="installation"><div class="contact-intro">
+<a class="crumb" href="{% url 'storefront' %}">خانه</a>
+<h1>{% include 'shop/contact-heading.html' %}</h1>
+<p>{% if page_topic == 'repair' %}برای هماهنگی تعمیر، شمارهٔ تماس، شهر و مشکل میز را بنویسید.{% elif page_topic == 'price' %}نام میز یا وسیلهٔ موردنیازتان را در پیام بنویسید.{% else %}برای خرید، نصب یا تعمیر میز، موضوع درخواست و شمارهٔ تماس‌تان را وارد کنید.{% endif %}</p>
+<div class="contact-directory" aria-label="راه‌های تماس فروشگاه">
+{% include 'shop/contact-channel.html' with channel='phone' label='شمارهٔ تماس' %}
+{% include 'shop/contact-channel.html' with channel='instagram' label='اینستاگرام' %}
+{% include 'shop/contact-channel.html' with channel='telegram' label='تلگرام' %}
+</div>
+</div><div class="panel"><h2>درخواست تماس</h2>
+{% if preview %}<p class="form-note">در پیش‌نمایش می‌توانید متن را آماده و کپی کنید. ثبت درخواست در سایت اصلی انجام می‌شود.</p>{% else %}<p class="form-note">برای پیگیری، نام و شمارهٔ تماس لازم است.</p>{% endif %}
+{% if preview %}<div data-draft>{% else %}<form method="post" action="{% url 'contact' %}#installation">{% csrf_token %}{% endif %}
+{% for message in messages %}{% if message.extra_tags == "inquiry-receipt" %}<p class="notice" role="status">{{ message }}</p>{% endif %}{% endfor %}
+{% if invalid %}<p class="error" role="alert">لطفاً موارد مشخص‌شده را بررسی کنید.</p>{% endif %}{{ form.non_field_errors }}
+<div class="fields">{% for field in form %}<div class="field f-{{ field.name }}">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>{% endfor %}</div>
+{% if preview %}<button class="btn dark" type="button" hidden data-copy>کپی متن درخواست</button><noscript><p>برای آماده‌سازی متن، جاوااسکریپت مرورگر را فعال کنید.</p></noscript><span class="draft-feedback" role="status"></span><textarea class="draft-output" aria-label="متن آماده برای کپی" readonly hidden></textarea></div>{% else %}<button class="btn dark" type="submit">ثبت درخواست تماس</button></form>{% endif %}</div></section></div>{% endblock %}
