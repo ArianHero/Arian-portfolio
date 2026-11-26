@@ -102,3 +102,16 @@ Deploy to Vercel or another Node.js host that supports Next.js App Router and ro
 - NBA Knowledge Game is displayed as a **Prototype**. The showcase only lists trivia questions, the interactive question flow, and score tracking. Leaderboards and multiplayer are presented as future exploration, not existing features.
 - The **Mr. Biliard** project is based on the public Django repository and is labelled **In progress** because the catalogue and production deployment still need business-specific completion.
 - The website projects are labelled **Prototype** or **In progress** where a verified public launch URL was not provided.
+
+
+## Deploy to GitHub Pages
+
+This repository is configured for a static GitHub Pages deployment at `https://arianhero.github.io/Arian-portfolio/`. The GitHub Actions workflow in `.github/workflows/deploy.yml` builds the Next.js static export and publishes the `out` directory.
+
+1. In GitHub, open **Settings → Pages**.
+2. Under **Build and deployment → Source**, select **GitHub Actions**.
+3. Push the project files to the `main` branch.
+4. Open the **Actions** tab and wait for **Deploy portfolio to GitHub Pages** to finish.
+5. Open `https://arianhero.github.io/Arian-portfolio/`.
+
+GitHub Pages cannot run server-side Next.js API routes. For this static preview, the contact form does not submit to a server. If a public email is added in `lib/site-config.ts`, the form opens a pre-filled email draft instead. Use a hosted form provider or a server-capable host for automatic email delivery.

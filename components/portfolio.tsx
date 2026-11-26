@@ -319,28 +319,26 @@ export default function Portfolio() {
     }
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (formState === "loading") return;
-    setFormState("loading");
     setFormMessage("");
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formValues)
-      });
-      const result = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        throw new Error(result.error || "Your message could not be sent. Please try again.");
-      }
-      setFormState("success");
-      setFormMessage("Your message has been sent. I'll get back to you as soon as I can.");
-      setFormValues({ name: "", email: "", projectType: "Website development", message: "", website: "" });
-    } catch (error) {
+
+    // GitHub Pages is static and cannot run the Next.js contact API route.
+    // If an email address is added later, open a pre-filled email draft instead.
+    if (!siteConfig.email) {
       setFormState("error");
-      setFormMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+      setFormMessage("The contact form is not connected in this GitHub Pages preview yet. Please use the GitHub link to get in touch.");
+      return;
     }
+
+    const subject = encodeURIComponent(`Portfolio enquiry: ${formValues.projectType || "New project"}`);
+    const body = encodeURIComponent(
+      `Name: ${formValues.name}\nEmail: ${formValues.email}\nProject type: ${formValues.projectType}\n\nMessage:\n${formValues.message}`
+    );
+    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
+    setFormState("success");
+    setFormMessage("Your email app should open with your message. Press Send there to complete delivery.");
   };
 
   return (
