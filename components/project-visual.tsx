@@ -12,12 +12,12 @@ export default function ProjectVisual({ visual, compact = false }: Props) {
         <div className="mock-browser shop-browser">
           <div className="mock-browser-top">
             <span className="browser-dots"><i /><i /><i /></span>
-            <span className="browser-address">tehran.shop / collection</span>
+            <span className="browser-address">tehran / online shop</span>
             <span className="browser-menu">MENU</span>
           </div>
           <div className="shop-masthead">
-            <span>TEHRAN / OBJECTS</span>
-            <span>CURATED FOR EVERYDAY</span>
+            <span>TEHRAN ONLINE SHOP</span>
+            <span>DIGITAL STOREFRONT</span>
           </div>
           <div className="shop-layout">
             <div className="shop-copy">
@@ -32,6 +32,32 @@ export default function ProjectVisual({ visual, compact = false }: Props) {
             </div>
           </div>
           <div className="shop-bottom"><span>OBJECTS WITH PURPOSE</span><span>01 — 04</span></div>
+        </div>
+      )}
+
+      {visual === "time" && (
+        <div className="time-stage">
+          <div className="time-topline"><span>NOW / WASTED / TIME</span><span>WEB PROJECT</span></div>
+          <div className="time-orbit" aria-hidden="true">
+            <div className="time-ring time-ring-one" />
+            <div className="time-ring time-ring-two" />
+            <div className="time-core"><small>MAKE IT COUNT</small><strong>NOW.</strong><span>TIME IS THE MATERIAL</span></div>
+            <i className="time-marker marker-one" /><i className="time-marker marker-two" /><i className="time-marker marker-three" />
+          </div>
+          <div className="time-bottom"><span>NOWASTEDTIME.IR</span><span>LIVE WEBSITE ↗</span></div>
+        </div>
+      )}
+
+      {visual === "trading" && (
+        <div className="trading-stage">
+          <div className="trading-topline"><span>MARKET RESEARCH / 001</span><span>MODEL IN DEVELOPMENT</span></div>
+          <div className="trading-heading"><small>FORMULA DEVELOPMENT</small><strong>READ THE<br /><em>MARKET.</em></strong></div>
+          <div className="trading-chart" aria-hidden="true">
+            <div className="trading-chart-grid" />
+            <svg viewBox="0 0 440 150" role="presentation" focusable="false"><path className="trading-area" d="M0 119 C30 108 43 90 68 100 S103 125 129 88 S164 35 190 61 S226 105 251 71 S291 44 315 57 S350 90 374 42 S414 30 440 8 L440 150 L0 150 Z" /><path className="trading-line" d="M0 119 C30 108 43 90 68 100 S103 125 129 88 S164 35 190 61 S226 105 251 71 S291 44 315 57 S350 90 374 42 S414 30 440 8" /></svg>
+            <span className="chart-label chart-label-a">INPUTS</span><span className="chart-label chart-label-b">SIGNALS</span><span className="chart-label chart-label-c">TESTING</span>
+          </div>
+          <div className="trading-bottom"><span>RESEARCH IN PROGRESS</span><span>NO PERFORMANCE CLAIMS</span></div>
         </div>
       )}
 

@@ -351,7 +351,7 @@ export default function Portfolio() {
         <div className="header-inner">
           <a href="#home" className="brand-mark" aria-label={`${siteConfig.name} home`}>
             <span className="brand-symbol">a<span>.</span></span>
-            <span className="brand-name">{siteConfig.shortName}<small>INDEPENDENT DIGITAL STUDIO</small></span>
+            <span className="brand-name">{siteConfig.shortName}<small>ENGINEERING / DIGITAL BUILDER</small></span>
           </a>
           <nav className="desktop-nav" aria-label="Main navigation">
             {navigation.map((item) => (
@@ -403,7 +403,7 @@ export default function Portfolio() {
             <Reveal>
               <div className="eyebrow"><span className="status-pulse" /> {siteConfig.role}</div>
               <h1>Ideas into<br /><span className="headline-outline">digital</span> experiences<span className="headline-period">.</span></h1>
-              <p className="hero-description">I design and build websites, interactive applications, and innovative products that solve real problems.</p>
+              <p className="hero-description">I'm Arian Haghani — a Civil Engineering student at Amirkabir University of Technology who builds websites, interactive applications, and digital products. I enjoy bringing engineering thinking, technology, and creative ideas together.</p>
               <div className="hero-actions">
                 <MagneticLink href="#work" className="button button-primary">Explore my work <ArrowUpRight size={16} /></MagneticLink>
                 <MagneticLink href="#contact" className="button button-quiet">Let's work together <ArrowRight size={15} /></MagneticLink>
@@ -423,10 +423,10 @@ export default function Portfolio() {
 
       <section className="intro-strip" aria-label="Creative approach">
         <div className="page-shell intro-strip-inner">
-          <span>THOUGHTFUL BY DESIGN</span><i />
-          <span>BUILT TO BE USEFUL</span><i />
-          <span>ALWAYS IN PROGRESS</span><i />
-          <span>MADE TO MOVE IDEAS FORWARD</span>
+          <span>ENGINEERING MINDSET</span><i />
+          <span>DIGITAL PRODUCTS</span><i />
+          <span>BASKETBALL LOVER</span><i />
+          <span>ALWAYS IN PROGRESS</span>
         </div>
       </section>
 
@@ -520,12 +520,37 @@ export default function Portfolio() {
         <div className="page-shell about-layout">
           <div className="about-main">
             <Reveal><div className="section-kicker"><span>03 / A LITTLE ABOUT ME</span><span>THE PERSON BEHIND THE PIXELS</span></div><h2>Curious by nature.<br /><em>Builder</em> by choice.</h2></Reveal>
-            <Reveal delay={0.08}><p className="about-lede">I'm {siteConfig.name}, a developer and product builder interested in the space between technology, design, and useful ideas.</p><p className="about-copy">I enjoy turning open-ended problems into clear digital experiences — whether that's a business website, an interactive tool, or an early-stage product concept. I care about how something works, how it feels, and whether it genuinely helps someone.</p></Reveal>
+            <Reveal delay={0.08}><p className="about-lede">I'm {siteConfig.name}, a Civil Engineering student at {siteConfig.education.institution} and a digital product builder. I like connecting analytical thinking with creative technology — from websites and interactive tools to early-stage product ideas.</p><p className="about-copy">Outside the screen, I'm a basketball lover. I enjoy the game's pace, strategy, and teamwork. I'm also exploring quantitative ideas and developing a mathematical formula for trading — a research project that is still in progress.</p></Reveal>
             <Reveal delay={0.14} className="about-principles"><div><span>01</span><strong>Start with the problem.</strong></div><div><span>02</span><strong>Make the experience feel effortless.</strong></div><div><span>03</span><strong>Build, learn, and improve.</strong></div></Reveal>
           </div>
           <Reveal className="about-aside" delay={0.12}>
             <div className="profile-orbit"><div className="profile-initial">A<span>.</span></div><div className="profile-ring ring-a" /><div className="profile-ring ring-b" /><span className="profile-orbit-label">IDEAS IN MOTION</span></div>
-            <div className="about-aside-meta"><span>BASED IN</span><strong>{siteConfig.location}</strong><span>FOCUS</span><strong>Software · Products · Experiences</strong></div>
+            <div className="about-aside-meta"><span>STUDYING</span><strong>{siteConfig.education.program} · {siteConfig.education.shortInstitution}</strong><span>INTERESTS</span><strong>Basketball · Technology · Markets</strong></div>
+          </Reveal>
+        </div>
+        <div className="page-shell about-personal-grid">
+          <Reveal className="personal-card education-card">
+            <div className="personal-card-top"><span>01 / EDUCATION</span><span>{siteConfig.education.shortInstitution}</span></div>
+            <div className="education-card-main">
+              <div className="education-seal">AUT<span>↗</span></div>
+              <div className="personal-card-body"><span>UNDERGRADUATE STUDENT</span><h3>{siteConfig.education.program}</h3><p>{siteConfig.education.institution}</p></div>
+            </div>
+            <div className="ranking-callout"><strong>{siteConfig.education.nationalRank}</strong><span>National university ranking*</span></div>
+            <p className="ranking-note">*Ranking positions vary by ranking body and year.</p>
+          </Reveal>
+          <Reveal className="personal-card basketball-card" delay={0.07}>
+            <div className="personal-card-top"><span>02 / OFF THE SCREEN</span><span>PERSONAL INTEREST</span></div>
+            <div className="basketball-art" aria-hidden="true"><div className="basketball-court" /><div className="basketball-ball"><i /><b /></div></div>
+            <div className="personal-card-body"><span>THE GAME I LOVE</span><h3>Basketball lover.</h3><p>Big on the game's energy, strategy, teamwork, and the details that make every possession matter.</p></div>
+          </Reveal>
+          <Reveal className="personal-card research-card" delay={0.14}>
+            <div className="personal-card-top"><span>03 / CURRENT RESEARCH</span><span>IN PROGRESS</span></div>
+            <div className="research-art" aria-hidden="true">
+              <div className="research-art-grid" />
+              <svg viewBox="0 0 320 120" role="presentation" focusable="false"><path d="M4 94 C28 88 36 52 58 64 S88 104 111 75 S143 31 165 48 S196 91 218 54 S258 15 278 35 S300 45 316 12" /><path className="research-path-muted" d="M4 106 C35 100 42 88 68 91 S103 66 128 77 S163 89 188 69 S220 83 244 62 S285 66 316 49" /></svg>
+              <span>MODEL / 001</span>
+            </div>
+            <div className="personal-card-body"><span>QUANTITATIVE EXPLORATION</span><h3>Trading formula.</h3><p>Developing and testing a mathematical approach to market analysis. Still research in progress — not a proven trading system.</p><a href="#work">Explore the project <ArrowUpRight size={13} /></a></div>
           </Reveal>
         </div>
         <div className="page-shell tech-panel-wrap">
@@ -555,7 +580,7 @@ export default function Portfolio() {
           <div className="contact-layout">
             <Reveal className="contact-details">
               <div className="contact-detail-block"><span className="detail-label">PREFER EMAIL?</span>{siteConfig.email ? <a href={`mailto:${siteConfig.email}`} className="contact-email">{siteConfig.email}<ArrowUpRight size={16} /></a> : <span className="contact-email placeholder-email">Email address will be added soon</span>}</div>
-              <div className="contact-detail-block"><span className="detail-label">FIND ME ELSEWHERE</span><div className="social-links"><a href={siteConfig.github} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a>{siteConfig.linkedin && <a href={siteConfig.linkedin} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={14} /></a>}{siteConfig.instagram && <a href={siteConfig.instagram} target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={14} /></a>}</div></div>
+              <div className="contact-detail-block"><span className="detail-label">FIND ME ELSEWHERE</span><div className="social-links"><a href={siteConfig.github} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a>{siteConfig.linkedin && <a href={siteConfig.linkedin} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={14} /></a>}{siteConfig.instagram && <a href={siteConfig.instagram} target="_blank" rel="noreferrer">Instagram {siteConfig.instagramHandle} <ArrowUpRight size={14} /></a>}</div></div>
               <div className="contact-aside-note"><MousePointer2 size={17} /><span>Good projects start with a clear problem, a curious mind, and an open conversation.</span></div>
             </Reveal>
             <Reveal className="contact-form-wrap" delay={0.08}>
@@ -573,7 +598,7 @@ export default function Portfolio() {
       </section>
 
       <footer className="site-footer">
-        <div className="page-shell footer-top"><a href="#home" className="brand-mark"><span className="brand-symbol">a<span>.</span></span><span className="brand-name">{siteConfig.shortName}<small>INDEPENDENT DIGITAL STUDIO</small></span></a><span className="footer-signoff">MADE WITH CURIOSITY, NOT A TEMPLATE.</span><a href="#home" className="back-top">BACK TO TOP <ArrowUpRight size={14} /></a></div>
+        <div className="page-shell footer-top"><a href="#home" className="brand-mark"><span className="brand-symbol">a<span>.</span></span><span className="brand-name">{siteConfig.shortName}<small>ENGINEERING / DIGITAL BUILDER</small></span></a><span className="footer-signoff">MADE WITH CURIOSITY, NOT A TEMPLATE.</span><a href="#home" className="back-top">BACK TO TOP <ArrowUpRight size={14} /></a></div>
         <div className="page-shell footer-bottom"><span>© {new Date().getFullYear()} {siteConfig.name}. ALL RIGHTS RESERVED.</span><span>DESIGN / CODE / PRODUCT</span><span>BUILT TO KEEP EVOLVING ↗</span></div>
       </footer>
 

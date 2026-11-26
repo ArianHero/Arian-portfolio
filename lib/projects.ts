@@ -4,7 +4,13 @@ export type ProjectCategory =
   | "Digital Products"
   | "Experiments";
 
-export type VisualType = "storefront" | "billiards" | "basketball" | "bottle";
+export type VisualType =
+  | "storefront"
+  | "billiards"
+  | "basketball"
+  | "bottle"
+  | "time"
+  | "trading";
 
 export type PortfolioItem = {
   id: string;
@@ -13,7 +19,7 @@ export type PortfolioItem = {
   subtitle: string;
   description: string;
   category: ProjectCategory;
-  status: "Prototype" | "In progress" | "Concept";
+  status: "Live" | "Prototype" | "In progress" | "Concept";
   visual: VisualType;
   tags: string[];
   year: string;
@@ -38,8 +44,67 @@ export const projectFilters = [
 
 export const projects: PortfolioItem[] = [
   {
-    id: "mr-biliard",
+    id: "nowastedtime",
     number: "01",
+    title: "Nowastedtime.ir",
+    subtitle: "A live website project",
+    description:
+      "A website project by Arian. Visit the live experience at nowastedtime.ir; a fuller project story can be added as the work is documented.",
+    category: "Websites",
+    status: "Live",
+    visual: "time",
+    tags: ["Website", "Live project", "Digital experience"],
+    year: "2026",
+    featured: true,
+    liveUrl: "https://nowastedtime.ir/",
+    details: {
+      overview:
+        "A live website project published at nowastedtime.ir. This portfolio entry introduces the project and links directly to the website.",
+      approach:
+        "The project is presented as a live digital experience. Detailed design decisions, implementation notes, and project goals can be added as the case study is documented.",
+      features: [
+        "Public website available at nowastedtime.ir",
+        "Direct link to the live experience"
+      ],
+      nextSteps: [
+        "Document the project's goals and intended audience",
+        "Add selected screenshots and implementation details",
+        "Include measurable outcomes if reliable data becomes available"
+      ]
+    }
+  },
+  {
+    id: "tehran-online-shop",
+    number: "02",
+    title: "Tehran Online Shop",
+    subtitle: "An online storefront project",
+    description:
+      "An e-commerce page featured in my web work, focused on presenting an online shop experience. The public page link can be added once confirmed.",
+    category: "Websites",
+    status: "In progress",
+    visual: "storefront",
+    tags: ["E-commerce", "Online shop", "Web design"],
+    year: "2026",
+    featured: true,
+    details: {
+      overview:
+        "An online shop page/project included in my website portfolio. Its public URL and a more detailed case study will be added when the final page address is confirmed.",
+      approach:
+        "The storefront direction emphasizes clear product presentation, easy browsing, and a straightforward path from discovery to enquiry or purchase.",
+      features: [
+        "Online shop page concept",
+        "Storefront-focused visual presentation"
+      ],
+      nextSteps: [
+        "Add the confirmed public page URL",
+        "Document the final page structure and implemented features",
+        "Add real screenshots of the finished page"
+      ]
+    }
+  },
+  {
+    id: "mr-biliard",
+    number: "03",
     title: "Mr. Biliard",
     subtitle: "A storefront for the game room",
     description:
@@ -49,11 +114,10 @@ export const projects: PortfolioItem[] = [
     visual: "billiards",
     tags: ["Django", "RTL storefront", "Product catalogue", "Enquiry workflow"],
     year: "2026",
-    featured: true,
     sourceUrl: "https://github.com/ArianHero/tehran-shop-preview",
     details: {
       overview:
-        "A digital storefront for a billiards business. The repository describes a Persian RTL Django shop with a filterable catalogue and an installation-request inbox in Django admin.",
+        "A digital storefront for a billiards business. The project is described as a Persian RTL Django shop with a filterable catalogue and an installation-request inbox in Django admin.",
       approach:
         "The visual direction uses a deep billiard-green identity, clear product discovery, and direct enquiry paths so visitors can understand the offer and take the next step without clutter.",
       features: [
@@ -70,7 +134,7 @@ export const projects: PortfolioItem[] = [
   },
   {
     id: "nba-knowledge-game",
-    number: "02",
+    number: "04",
     title: "NBA Knowledge Game",
     subtitle: "Basketball knowledge, made playable",
     description:
@@ -100,7 +164,7 @@ export const projects: PortfolioItem[] = [
   },
   {
     id: "smart-hydration-bottle",
-    number: "03",
+    number: "05",
     title: "Smart Hydration Bottle",
     subtitle: "A small interaction with a useful signal",
     description:
@@ -125,6 +189,35 @@ export const projects: PortfolioItem[] = [
         "Prototype and calibrate the weighing mechanism",
         "Validate measurement accuracy across different drinking angles",
         "Test battery life, sealing, cleaning, and manufacturing cost"
+      ]
+    }
+  },
+  {
+    id: "trading-formula",
+    number: "06",
+    title: "Trading Formula",
+    subtitle: "A quantitative idea in development",
+    description:
+      "An ongoing personal research project to develop a mathematical formula for analyzing market behavior and structuring trading decisions. It is still being developed; no profitability or performance claims are made.",
+    category: "Experiments",
+    status: "In progress",
+    visual: "trading",
+    tags: ["Quantitative research", "Market analysis", "Model development"],
+    year: "2026",
+    details: {
+      overview:
+        "I am developing a mathematical framework to study market behavior and support more structured trading analysis. The formula is a work in progress and has not been presented as a proven trading system.",
+      approach:
+        "The work focuses on defining explicit inputs and assumptions, then testing the formula against historical data without confusing an attractive backtest with reliable out-of-sample evidence.",
+      features: [
+        "Formula and model development in progress",
+        "Research into market inputs and signals",
+        "No verified profitability claims or validated live results"
+      ],
+      nextSteps: [
+        "Define and document the formula's inputs and assumptions",
+        "Test chronologically on data not used during development",
+        "Evaluate transaction costs, slippage, liquidity, and robustness"
       ]
     }
   }

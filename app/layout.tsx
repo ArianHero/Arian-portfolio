@@ -3,31 +3,34 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Arian Haghani — Developer & Product Builder",
+  title: "Arian Haghani — Civil Engineering Student & Digital Product Builder",
   description:
-    "I design and build websites, interactive applications, and product experiences that turn ambitious ideas into useful digital things.",
+    "Arian Haghani is a Civil Engineering student at Amirkabir University of Technology, developer, basketball lover, and product builder creating websites, digital products, and new ideas.",
   applicationName: "Arian Haghani Portfolio",
   icons: { icon: "/favicon.svg" },
   keywords: [
     "Arian Haghani",
+    "Amirkabir University of Technology",
+    "Civil Engineering student",
     "developer portfolio",
     "web development",
     "product design",
-    "interactive websites",
-    "digital products"
+    "basketball",
+    "digital products",
+    "trading formula research"
   ],
   openGraph: {
-    title: "Arian Haghani — Developer & Product Builder",
+    title: "Arian Haghani — Civil Engineering Student & Digital Product Builder",
     description:
-      "Ideas into digital experiences. Explore selected websites, products, and experiments.",
+      "Civil Engineering at Amirkabir University of Technology, digital projects, product ideas, basketball, and ongoing experiments.",
     type: "website",
     images: ["/og-card.svg"]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arian Haghani — Developer & Product Builder",
+    title: "Arian Haghani — Civil Engineering Student & Digital Product Builder",
     description:
-      "Ideas into digital experiences. Explore selected websites, products, and experiments.",
+      "Civil Engineering at Amirkabir University of Technology, digital projects, product ideas, basketball, and ongoing experiments.",
     images: ["/og-card.svg"]
   }
 };
