@@ -1,3 +1,0 @@
-{% load shop_contacts %}
-<div class="channel"><span class="channel-icon">{% include 'shop/icon.html' with icon=channel %}</span><div><h2>{{ label }}</h2>
-{% for item in contacts|channel_entries:channel %}<a href="{{ item.href }}" aria-label="{{ item.title }}، {{ label }}، {{ item.display }}"><bdi dir="ltr">{{ item.display }}</bdi>{% if not forloop.first or not forloop.last %}<small>{{ item.title }}</small>{% endif %}</a>{% empty %}<span class="channel-pending">هنوز ثبت نشده</span>{% endfor %}</div></div>

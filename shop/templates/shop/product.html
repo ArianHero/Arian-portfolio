@@ -1,9 +1,0 @@
-{% extends "shop/base.html" %}{% load static %}
-{% block title %}{{ product.name }} | مستر بیلیارد{% endblock %}
-{% block content %}<article class="shell product-page"><a class="crumb" href="{% if product.category == 'accessories' %}{% url 'accessories' %}{% else %}{% url 'tables' %}{% endif %}">{% if product.category == 'accessories' %}دیگر محصولات{% else %}مجموعهٔ میزها{% endif %}</a>
-<div class="product-layout"><div><p class="kicker">{{ product.get_category_display }}</p><h1>{{ product.name }}</h1>{% if product.description %}<div class="product-desc">{{ product.description|linebreaks }}</div>{% endif %}
-{% if product.price != None %}<p class="price">{{ product.price }} تومان</p>{% endif %}<a class="btn dark" href="{% url 'contact' %}?topic=price">استعلام قیمت</a></div>
-{% if product.image or product.model_file %}<div class="product-media">{% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% endif %}
-{% if product.model_file %}
-<h2>نمای سه‌بعدی</h2><model-viewer data-module="{% static 'shop/viewer/model-viewer.min.js' %}" src="{{ product.model_file.url }}" camera-controls touch-action="pan-y" shadow-intensity="1" alt="مدل قابل‌چرخش {{ product.name }}"{% if product.image %} poster="{{ product.image.url }}"{% endif %}></model-viewer>
-<p data-model-controls>برای چرخاندن مدل، انگشت یا ماوس را روی آن بکشید.</p><p hidden data-model-error role="status">نمای سه‌بعدی بارگیری نشد. فایل مدل را از پیوند زیر دریافت کنید.</p><a class="line-link" href="{{ product.model_file.url }}" download>دریافت فایل سه‌بعدی</a>{% endif %}</div>{% endif %}</div></article>{% endblock %}
