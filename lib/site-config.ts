@@ -1,9 +1,14 @@
+export const basePath = "/Arian-portfolio";
+export const siteUrl = new URL(`${basePath}/`, "https://arianhero.github.io");
+
+export const familiarTechnologies = ["Python", "HTML", "CSS", "Django", "PHP", "JavaScript"];
+
 export const siteConfig = {
   name: "Arian Haghani",
   shortName: "Arian",
-  role: "Civil Engineering Student · Developer · Product Builder",
+  role: "Civil Engineering Student · Product Builder",
   location: "Available worldwide",
-  email: "", // Add your public contact email here.
+  email: "arian.haghani.1306@gmail.com",
   github: "https://github.com/ArianHero",
   linkedin: "", // Add your LinkedIn profile URL here.
   instagram: "https://www.instagram.com/Arianhghni/",
@@ -12,13 +17,12 @@ export const siteConfig = {
     program: "Civil Engineering",
     institution: "Amirkabir University of Technology",
     shortInstitution: "AUT",
-    nationalRank: "#3 nationally",
-    rankingNote: "University rankings vary by ranking body and year."
+    nationalRank: "I describe AUT as the third-ranked university in Iran."
   },
   availability: "Open to thoughtful collaborations",
   tagline: "Engineering thinking. Digital experiences.",
   description:
-    "Arian Haghani is a Civil Engineering student at Amirkabir University of Technology, developer, basketball lover, and product builder creating websites, digital products, and new ideas."
+    "Arian Haghani studies Civil Engineering at Amirkabir University of Technology in Iran. Explore his digital products, business ideas, basketball interests, and research."
 };
 
 export const navigation = [
@@ -26,6 +30,6 @@ export const navigation = [
   { label: "Work", href: "#work" },
   { label: "Products", href: "#products" },
   { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
+  { label: "Collaborate", href: "#services" },
   { label: "Contact", href: "#contact" }
 ];

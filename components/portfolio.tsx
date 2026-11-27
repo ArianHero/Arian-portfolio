@@ -6,7 +6,6 @@ import {
   useMemo,
   useRef,
   useState,
-  type FormEvent,
   type PointerEvent as ReactPointerEvent,
   type ReactNode
 } from "react";
@@ -15,27 +14,24 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
-  CheckCircle2,
-  Code2,
   ExternalLink,
   Github,
   Menu,
   Moon,
-  MousePointer2,
-  Send,
   Sparkles,
   Sun,
   X
 } from "lucide-react";
 import HeroScene from "@/components/hero-scene";
 import ProjectVisual from "@/components/project-visual";
-import { navigation, siteConfig } from "@/lib/site-config";
+import ContactForm, { hasContactForm } from "@/components/contact-form";
+import BasketballQuiz from "@/components/basketball-quiz";
+import { familiarTechnologies, navigation, siteConfig } from "@/lib/site-config";
 import {
   products,
   projectFilters,
   projects,
-  services,
-  technologies,
+  collaborationTopics,
   type PortfolioItem
 } from "@/lib/projects";
 
@@ -226,6 +222,7 @@ function DetailModal({
           <div className="section-kicker"><span>{item.number} / CASE FILE</span><span>{item.status}</span></div>
           <h2 id="detail-title">{item.title}<span>.</span></h2>
           <p className="modal-lede">{item.description}</p>
+          {item.id === "nba-knowledge-game" && <BasketballQuiz />}
           <div className="modal-detail-grid">
             <div><span className="detail-label">OVERVIEW</span><p>{item.details.overview}</p></div>
             <div><span className="detail-label">DESIGN APPROACH</span><p>{item.details.approach}</p></div>
@@ -243,8 +240,8 @@ function DetailModal({
           <div className="modal-footer">
             <div className="tag-list">{item.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
             <div className="modal-links">
-              {item.liveUrl && <a href={item.liveUrl} target="_blank" rel="noreferrer">Live demo <ExternalLink size={14} /></a>}
-              {item.sourceUrl && <a href={item.sourceUrl} target="_blank" rel="noreferrer">Source code <Github size={14} /></a>}
+              {item.liveUrl && <a href={item.liveUrl} target="_blank" rel="noreferrer">Visit website <ExternalLink size={14} /></a>}
+              {item.sourceUrl && <a href={item.sourceUrl} target="_blank" rel="noreferrer">Project repository <Github size={14} /></a>}
             </div>
           </div>
         </div>
@@ -261,10 +258,6 @@ export default function Portfolio() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [scrollProgress, setScrollProgress] = useState(0);
   const [scrolled, setScrolled] = useState(false);
-  const [activeTech, setActiveTech] = useState("React");
-  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [formMessage, setFormMessage] = useState("");
-  const [formValues, setFormValues] = useState({ name: "", email: "", projectType: "Website development", message: "", website: "" });
 
   const filteredProjects = useMemo(() => {
     if (filter === "All Projects") return projects;
@@ -311,36 +304,6 @@ export default function Portfolio() {
 
   const closeModal = useCallback(() => setSelectedItem(null), []);
 
-  const updateField = (field: keyof typeof formValues, value: string) => {
-    setFormValues((current) => ({ ...current, [field]: value }));
-    if (formState !== "idle") {
-      setFormState("idle");
-      setFormMessage("");
-    }
-  };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (formState === "loading") return;
-    setFormMessage("");
-
-    // GitHub Pages is static and cannot run the Next.js contact API route.
-    // If an email address is added later, open a pre-filled email draft instead.
-    if (!siteConfig.email) {
-      setFormState("error");
-      setFormMessage("The contact form is not connected in this GitHub Pages preview yet. Please use the GitHub link to get in touch.");
-      return;
-    }
-
-    const subject = encodeURIComponent(`Portfolio enquiry: ${formValues.projectType || "New project"}`);
-    const body = encodeURIComponent(
-      `Name: ${formValues.name}\nEmail: ${formValues.email}\nProject type: ${formValues.projectType}\n\nMessage:\n${formValues.message}`
-    );
-    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
-    setFormState("success");
-    setFormMessage("Your email app should open with your message. Press Send there to complete delivery.");
-  };
-
   return (
     <main>
       <div className="loading-veil" aria-hidden="true"><span className="loading-mark">a<span>.</span></span><div className="loading-track"><i /></div></div>
@@ -351,7 +314,7 @@ export default function Portfolio() {
         <div className="header-inner">
           <a href="#home" className="brand-mark" aria-label={`${siteConfig.name} home`}>
             <span className="brand-symbol">a<span>.</span></span>
-            <span className="brand-name">{siteConfig.shortName}<small>ENGINEERING / DIGITAL BUILDER</small></span>
+            <span className="brand-name">{siteConfig.shortName}<small>ENGINEERING / PRODUCTS</small></span>
           </a>
           <nav className="desktop-nav" aria-label="Main navigation">
             {navigation.map((item) => (
@@ -403,7 +366,7 @@ export default function Portfolio() {
             <Reveal>
               <div className="eyebrow"><span className="status-pulse" /> {siteConfig.role}</div>
               <h1>Ideas into<br /><span className="headline-outline">digital</span> experiences<span className="headline-period">.</span></h1>
-              <p className="hero-description">I'm Arian Haghani — a Civil Engineering student at Amirkabir University of Technology who builds websites, interactive applications, and digital products. I enjoy bringing engineering thinking, technology, and creative ideas together.</p>
+              <p className="hero-description">I'm {siteConfig.name}, a Civil Engineering student at {siteConfig.education.institution} in Iran. I'm interested in digital products, new business ideas, and how good design makes everyday tasks easier.</p>
               <div className="hero-actions">
                 <MagneticLink href="#work" className="button button-primary">Explore my work <ArrowUpRight size={16} /></MagneticLink>
                 <MagneticLink href="#contact" className="button button-quiet">Let's work together <ArrowRight size={15} /></MagneticLink>
@@ -415,7 +378,6 @@ export default function Portfolio() {
             <HeroScene />
             <div className="hero-art-index"><span>INTERACTIVE FORM STUDY</span><strong>001</strong></div>
           </div>
-          <div className="hero-side-note">DESIGN / DEVELOP / EXPLORE</div>
         </div>
         <a href="#work" className="scroll-cue" aria-label="Scroll to selected work"><span>SCROLL</span><ArrowDown size={14} /></a>
         <div className="hero-bottom-rule page-shell"><span>BASED IN THE DIGITAL WORLD</span><span>BUILDING WITH INTENTION ↘</span></div>
@@ -434,7 +396,7 @@ export default function Portfolio() {
         <div className="page-shell">
           <Reveal className="section-heading-row">
             <div><div className="section-kicker"><span>01 / SELECTED WORK</span><span>2025 — {new Date().getFullYear()}</span></div><h2>Selected <em>work.</em></h2></div>
-            <p>A collection of websites, experiments, and product ideas — each one a chance to make something clearer, more useful, or more interesting.</p>
+            <p>Websites, product ideas, and civil engineering research I’m working on.</p>
           </Reveal>
           <div className="project-toolbar">
             <div className="filter-list" role="group" aria-label="Filter projects">
@@ -494,7 +456,7 @@ export default function Portfolio() {
         <div className="page-shell">
           <Reveal className="section-heading-row products-heading">
             <div><div className="section-kicker"><span>02 / PRODUCT THINKING</span><span>CONCEPTS & EXPERIMENTS</span></div><h2>From thought<br />to <em>thing.</em></h2></div>
-            <p>Not every idea starts as software. I like exploring the full journey — from the first sketch and interaction to a prototype that can be tested in the real world.</p>
+            <p>A hydration bottle concept and a basketball quiz you can try.</p>
           </Reveal>
           <div className="product-feature-grid">
             {products.map((product, index) => (
@@ -520,7 +482,7 @@ export default function Portfolio() {
         <div className="page-shell about-layout">
           <div className="about-main">
             <Reveal><div className="section-kicker"><span>03 / A LITTLE ABOUT ME</span><span>THE PERSON BEHIND THE PIXELS</span></div><h2>Curious by nature.<br /><em>Builder</em> by choice.</h2></Reveal>
-            <Reveal delay={0.08}><p className="about-lede">I'm {siteConfig.name}, a Civil Engineering student at {siteConfig.education.institution} and a digital product builder. I like connecting analytical thinking with creative technology — from websites and interactive tools to early-stage product ideas.</p><p className="about-copy">Outside the screen, I'm a basketball lover. I enjoy the game's pace, strategy, and teamwork. I'm also exploring quantitative ideas and developing a mathematical formula for trading — a research project that is still in progress.</p></Reveal>
+            <Reveal delay={0.08}><p className="about-lede">Studying civil engineering has made me curious about how cities work. My current research looks at everyday traffic violations and water waste in Tehran.</p><p className="about-copy">I'm interested in AI, financial markets, and what it takes to turn a product idea into a business. Outside of work, I love basketball for its pace, strategy, and teamwork.</p></Reveal>
             <Reveal delay={0.14} className="about-principles"><div><span>01</span><strong>Start with the problem.</strong></div><div><span>02</span><strong>Make the experience feel effortless.</strong></div><div><span>03</span><strong>Build, learn, and improve.</strong></div></Reveal>
           </div>
           <Reveal className="about-aside" delay={0.12}>
@@ -535,8 +497,7 @@ export default function Portfolio() {
               <div className="education-seal">AUT<span>↗</span></div>
               <div className="personal-card-body"><span>UNDERGRADUATE STUDENT</span><h3>{siteConfig.education.program}</h3><p>{siteConfig.education.institution}</p></div>
             </div>
-            <div className="ranking-callout"><strong>{siteConfig.education.nationalRank}</strong><span>National university ranking*</span></div>
-            <p className="ranking-note">*Ranking positions vary by ranking body and year.</p>
+            <p className="ranking-callout">{siteConfig.education.nationalRank}</p>
           </Reveal>
           <Reveal className="personal-card basketball-card" delay={0.07}>
             <div className="personal-card-top"><span>02 / OFF THE SCREEN</span><span>PERSONAL INTEREST</span></div>
@@ -550,22 +511,31 @@ export default function Portfolio() {
               <svg viewBox="0 0 320 120" role="presentation" focusable="false"><path d="M4 94 C28 88 36 52 58 64 S88 104 111 75 S143 31 165 48 S196 91 218 54 S258 15 278 35 S300 45 316 12" /><path className="research-path-muted" d="M4 106 C35 100 42 88 68 91 S103 66 128 77 S163 89 188 69 S220 83 244 62 S285 66 316 49" /></svg>
               <span>MODEL / 001</span>
             </div>
-            <div className="personal-card-body"><span>QUANTITATIVE EXPLORATION</span><h3>Trading formula.</h3><p>Developing and testing a mathematical approach to market analysis. Still research in progress — not a proven trading system.</p><a href="#work">Explore the project <ArrowUpRight size={13} /></a></div>
+            <section className="personal-card-body" id="trading-formula" aria-labelledby="trading-heading">
+              <h3 id="trading-heading">Trading formula.</h3>
+              <p>I'm developing a mathematical formula to study market behavior and structure trading decisions. I'm defining its inputs and how to test it on historical data.</p>
+              <button className="text-link" type="button" onClick={() => setSelectedItem(projects.find((project) => project.id === "trading-formula") ?? null)}>
+                View the research <ArrowUpRight size={13} />
+              </button>
+            </section>
           </Reveal>
         </div>
-        <div className="page-shell tech-panel-wrap">
-          <Reveal className="tech-panel">
-            <div className="tech-panel-heading"><div className="section-kicker"><span>THE TOOLBOX</span><span>ALWAYS EVOLVING</span></div><h3>Tools are only as good<br />as the ideas behind them.</h3><p>A living toolkit — not a list of skill ratings.</p></div>
-            <div className="tech-visual"><div className="tech-orbit"><div className="tech-center"><Code2 size={24} /><span>BUILD</span></div>{technologies.map((tech, index) => <button key={tech} className={`tech-node tech-node-${index + 1}${activeTech === tech ? " is-active" : ""}`} onClick={() => setActiveTech(tech)} aria-pressed={activeTech === tech}>{tech}</button>)}</div><div className="tech-selected"><span>SELECTED TOOL</span><strong>{activeTech}</strong><span>Explore · Combine · Create</span></div></div>
+        <section className="page-shell familiarity-wrap" aria-labelledby="familiarity-heading">
+          <Reveal className="familiarity-panel">
+            <h3 id="familiarity-heading">Technologies I’m familiar with</h3>
+            <ul className="familiarity-list">
+              {familiarTechnologies.map((technology) => <li key={technology}>{technology}</li>)}
+            </ul>
+            <p className="familiarity-ai"><strong>AI is one of my strongest tools.</strong> I use it to explore ideas, organize research, and move projects forward.</p>
           </Reveal>
-        </div>
+        </section>
       </section>
 
       <section className="services-section section-pad" id="services">
         <div className="page-shell">
-          <Reveal className="section-heading-row"><div><div className="section-kicker"><span>04 / WHAT I CAN HELP WITH</span><span>IDEA → EXPERIENCE</span></div><h2>Good work starts<br />with a <em>conversation.</em></h2></div><p>From a focused landing page to an early product prototype, the goal is always the same: solve the right problem with care and clarity.</p></Reveal>
+          <Reveal className="section-heading-row"><div><h2>Let’s <em>collaborate.</em></h2></div><p>I’m open to talking through ideas for products, storefronts, and early prototypes.</p></Reveal>
           <div className="services-list">
-            {services.map((service, index) => (
+            {collaborationTopics.map((service, index) => (
               <Reveal key={service.number} delay={index * 0.025}>
                 <a href="#contact" className="service-row"><span className="service-number">{service.number}</span><h3>{service.title}</h3><p>{service.description}</p><span className="service-arrow"><ArrowUpRight size={20} /></span></a>
               </Reveal>
@@ -576,30 +546,29 @@ export default function Portfolio() {
 
       <section className="contact-section section-pad" id="contact">
         <div className="page-shell">
-          <Reveal className="contact-heading"><div className="section-kicker"><span>05 / START SOMETHING</span><span>{siteConfig.availability.toUpperCase()}</span></div><h2>Have an idea?<br /><em>Let's build</em> something<span className="headline-period">.</span></h2><p>Tell me what you're thinking. A rough idea is more than enough to start a good conversation.</p></Reveal>
+          <Reveal className="contact-heading"><div className="section-kicker"><span>05 / START SOMETHING</span><span>{siteConfig.availability.toUpperCase()}</span></div><h2>Have an idea?<br /><em>Let's build</em> something<span className="headline-period">.</span></h2><p>Tell me what you're building or what problem you'd like to solve.</p></Reveal>
           <div className="contact-layout">
             <Reveal className="contact-details">
-              <div className="contact-detail-block"><span className="detail-label">PREFER EMAIL?</span>{siteConfig.email ? <a href={`mailto:${siteConfig.email}`} className="contact-email">{siteConfig.email}<ArrowUpRight size={16} /></a> : <span className="contact-email placeholder-email">Email address will be added soon</span>}</div>
-              <div className="contact-detail-block"><span className="detail-label">FIND ME ELSEWHERE</span><div className="social-links"><a href={siteConfig.github} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a>{siteConfig.linkedin && <a href={siteConfig.linkedin} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={14} /></a>}{siteConfig.instagram && <a href={siteConfig.instagram} target="_blank" rel="noreferrer">Instagram {siteConfig.instagramHandle} <ArrowUpRight size={14} /></a>}</div></div>
-              <div className="contact-aside-note"><MousePointer2 size={17} /><span>Good projects start with a clear problem, a curious mind, and an open conversation.</span></div>
+              {siteConfig.email && <div className="contact-detail-block"><span className="detail-label">EMAIL</span><a href={`mailto:${siteConfig.email}`} className="contact-email">{siteConfig.email}<ArrowUpRight size={16} /></a></div>}
+              <div className="contact-detail-block"><span className="detail-label">FIND ME ELSEWHERE</span><div className="social-links"><a href={siteConfig.github} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a>{siteConfig.linkedin && <a href={siteConfig.linkedin} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={14} /></a>}{hasContactForm && <a href={siteConfig.instagram} target="_blank" rel="noreferrer">Instagram {siteConfig.instagramHandle} <ArrowUpRight size={14} /></a>}</div></div>
             </Reveal>
             <Reveal className="contact-form-wrap" delay={0.08}>
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <div className="form-row"><label>Your name<input name="name" type="text" placeholder="How should I call you?" autoComplete="name" required minLength={2} maxLength={80} value={formValues.name} onChange={(event) => updateField("name", event.target.value)} /></label><label>Your email<input name="email" type="email" placeholder="you@example.com" autoComplete="email" required maxLength={160} value={formValues.email} onChange={(event) => updateField("email", event.target.value)} /></label></div>
-                <label>What are you thinking about?<select name="projectType" value={formValues.projectType} onChange={(event) => updateField("projectType", event.target.value)}><option>Website development</option><option>Web application</option><option>UI / UX design</option><option>Product prototype</option><option>Custom software</option><option>Something else</option></select></label>
-                <label>Your message<textarea name="message" placeholder="A little context about your idea, goals, or the problem you're trying to solve..." required minLength={10} maxLength={4000} rows={5} value={formValues.message} onChange={(event) => updateField("message", event.target.value)} /></label>
-                <label className="honeypot" aria-hidden="true">Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" value={formValues.website} onChange={(event) => updateField("website", event.target.value)} /></label>
-                <div className="form-bottom"><span>Usually reply within 1–2 business days.</span><button className="button button-primary form-submit" type="submit" disabled={formState === "loading"}>{formState === "loading" ? "Sending..." : "Send message"}{formState === "loading" ? <span className="button-spinner" /> : <Send size={15} />}</button></div>
-                <AnimatePresence mode="wait">{formMessage && <motion.p key={formState} className={`form-feedback ${formState}`} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} role="status">{formState === "success" ? <CheckCircle2 size={16} /> : <span>!</span>}{formMessage}</motion.p>}</AnimatePresence>
-              </form>
+              {hasContactForm ? <ContactForm /> : (
+                <div className="contact-direct">
+                  <span className="detail-label">{siteConfig.instagramHandle}</span>
+                  <MagneticLink href={siteConfig.instagram} className="button button-primary" external>
+                    Reach out on Instagram <ArrowUpRight size={16} />
+                  </MagneticLink>
+                </div>
+              )}
             </Reveal>
           </div>
         </div>
       </section>
 
       <footer className="site-footer">
-        <div className="page-shell footer-top"><a href="#home" className="brand-mark"><span className="brand-symbol">a<span>.</span></span><span className="brand-name">{siteConfig.shortName}<small>ENGINEERING / DIGITAL BUILDER</small></span></a><span className="footer-signoff">MADE WITH CURIOSITY, NOT A TEMPLATE.</span><a href="#home" className="back-top">BACK TO TOP <ArrowUpRight size={14} /></a></div>
-        <div className="page-shell footer-bottom"><span>© {new Date().getFullYear()} {siteConfig.name}. ALL RIGHTS RESERVED.</span><span>DESIGN / CODE / PRODUCT</span><span>BUILT TO KEEP EVOLVING ↗</span></div>
+        <div className="page-shell footer-top"><a href="#home" className="brand-mark"><span className="brand-symbol">a<span>.</span></span><span className="brand-name">{siteConfig.shortName}<small>ENGINEERING / PRODUCTS</small></span></a><a href="#home" className="back-top">BACK TO TOP <ArrowUpRight size={14} /></a></div>
+        <div className="page-shell footer-bottom"><span>© {new Date().getFullYear()} {siteConfig.name}</span></div>
       </footer>
 
       <AnimatePresence>{selectedItem && <DetailModal item={selectedItem} onClose={closeModal} />}</AnimatePresence>

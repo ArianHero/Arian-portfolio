@@ -5,9 +5,26 @@ type Props = {
   compact?: boolean;
 };
 
+const workPreviews: Partial<Record<VisualType, { label: string; title: string }>> = {
+  "traffic-study": { label: "Literature review", title: "Traffic behavior" },
+  "water-study": { label: "Conference paper", title: "Water waste" },
+  "incident-report": { label: "App in progress", title: "Report a violation" }
+};
+
 export default function ProjectVisual({ visual, compact = false }: Props) {
+  const workPreview = workPreviews[visual];
+
   return (
     <div className={`project-visual visual-${visual}${compact ? " is-compact" : ""}`}>
+      {workPreview && (
+        <div className="work-preview" aria-hidden="true">
+          <div className="work-preview-pattern" />
+          <div className="work-preview-copy">
+            <span>{workPreview.label}</span>
+            <strong>{workPreview.title}</strong>
+          </div>
+        </div>
+      )}
       {visual === "storefront" && (
         <div className="mock-browser shop-browser">
           <div className="mock-browser-top">
@@ -37,11 +54,11 @@ export default function ProjectVisual({ visual, compact = false }: Props) {
 
       {visual === "time" && (
         <div className="time-stage">
-          <div className="time-topline"><span>NOW / WASTED / TIME</span><span>WEB PROJECT</span></div>
+          <div className="time-topline"><span>NOWASTEDTIME</span><span>PERSONAL PLANNER</span></div>
           <div className="time-orbit" aria-hidden="true">
             <div className="time-ring time-ring-one" />
             <div className="time-ring time-ring-two" />
-            <div className="time-core"><small>MAKE IT COUNT</small><strong>NOW.</strong><span>TIME IS THE MATERIAL</span></div>
+            <div className="time-core"><small>PLAN YOUR DAY</small><strong>NOW.</strong><span>TASKS · HABITS · WORKOUTS</span></div>
             <i className="time-marker marker-one" /><i className="time-marker marker-two" /><i className="time-marker marker-three" />
           </div>
           <div className="time-bottom"><span>NOWASTEDTIME.IR</span><span>LIVE WEBSITE ↗</span></div>
@@ -57,7 +74,7 @@ export default function ProjectVisual({ visual, compact = false }: Props) {
             <svg viewBox="0 0 440 150" role="presentation" focusable="false"><path className="trading-area" d="M0 119 C30 108 43 90 68 100 S103 125 129 88 S164 35 190 61 S226 105 251 71 S291 44 315 57 S350 90 374 42 S414 30 440 8 L440 150 L0 150 Z" /><path className="trading-line" d="M0 119 C30 108 43 90 68 100 S103 125 129 88 S164 35 190 61 S226 105 251 71 S291 44 315 57 S350 90 374 42 S414 30 440 8" /></svg>
             <span className="chart-label chart-label-a">INPUTS</span><span className="chart-label chart-label-b">SIGNALS</span><span className="chart-label chart-label-c">TESTING</span>
           </div>
-          <div className="trading-bottom"><span>RESEARCH IN PROGRESS</span><span>NO PERFORMANCE CLAIMS</span></div>
+          <div className="trading-bottom"><span>RESEARCH IN PROGRESS</span><span>ILLUSTRATIVE CHART</span></div>
         </div>
       )}
 
@@ -78,17 +95,12 @@ export default function ProjectVisual({ visual, compact = false }: Props) {
       {visual === "basketball" && (
         <div className="nba-stage">
           <div className="nba-topline"><span>COURTSIDE / IQ</span><span>CHALLENGE 001</span></div>
-          <div className="nba-scoreboard">
-            <div className="nba-team"><span className="team-mark mark-one">L</span><small>LOS ANGELES</small><strong>108</strong></div>
-            <div className="nba-vs"><span>FINAL</span><i>VS</i><span>Q4 · 00:00</span></div>
-            <div className="nba-team"><span className="team-mark mark-two">B</span><small>BOSTON</small><strong>104</strong></div>
-          </div>
           <div className="nba-question">
-            <span>QUESTION 04 / 10</span>
-            <strong>Who holds the record<br />for most career assists?</strong>
-            <div className="nba-options"><i>A&nbsp; Magic Johnson</i><i className="option-active">B&nbsp; John Stockton <b>✓</b></i><i>C&nbsp; Chris Paul</i></div>
+            <span>QUESTION 01 / 05</span>
+            <strong>How long is a regulation<br />NBA quarter?</strong>
+            <div className="nba-options"><i>A&nbsp; 10 minutes</i><i>B&nbsp; 12 minutes</i><i>C&nbsp; 15 minutes</i></div>
           </div>
-          <div className="nba-bottom"><span>YOUR KNOWLEDGE. YOUR GAME.</span><span>04 / 10</span></div>
+          <div className="nba-bottom"><span>NBA RULES & HISTORY</span><span>PLAYABLE DEMO</span></div>
         </div>
       )}
 
@@ -96,10 +108,11 @@ export default function ProjectVisual({ visual, compact = false }: Props) {
         <div className="bottle-stage">
           <div className="bottle-glow" />
           <div className="bottle-object">
-            <div className="bottle-lid"><span /></div>
+            <div className="bottle-lid">
+              <span className="bottle-screen">680 <small>ml</small></span>
+            </div>
             <div className="bottle-neck" />
             <div className="bottle-body">
-              <div className="bottle-screen"><small>HYDRATION</small><strong>680<span>ml</span></strong><i><b /></i><small>68% OF DAILY GOAL</small></div>
               <div className="bottle-reflection" />
             </div>
             <div className="bottle-base" />

@@ -1,17 +1,14 @@
 import type { NextConfig } from "next";
+import { basePath } from "./lib/site-config";
 
 const nextConfig: NextConfig = {
-  // GitHub Pages serves static files, so export the site at build time.
   output: "export",
-  // This repository is published under /Arian-portfolio/.
-  basePath: "/Arian-portfolio",
-  assetPrefix: "/Arian-portfolio/",
+  basePath,
   trailingSlash: true,
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
-    unoptimized: true,
-    formats: ["image/avif", "image/webp"]
+    unoptimized: true
   }
 };
 

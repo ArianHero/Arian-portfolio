@@ -2,6 +2,7 @@ export type ProjectCategory =
   | "Websites"
   | "Web Applications"
   | "Digital Products"
+  | "Research"
   | "Experiments";
 
 export type VisualType =
@@ -10,7 +11,10 @@ export type VisualType =
   | "basketball"
   | "bottle"
   | "time"
-  | "trading";
+  | "trading"
+  | "traffic-study"
+  | "water-study"
+  | "incident-report";
 
 export type PortfolioItem = {
   id: string;
@@ -39,6 +43,7 @@ export const projectFilters = [
   "Websites",
   "Web Applications",
   "Digital Products",
+  "Research",
   "Experiments"
 ] as const;
 
@@ -47,24 +52,26 @@ export const projects: PortfolioItem[] = [
     id: "nowastedtime",
     number: "01",
     title: "Nowastedtime.ir",
-    subtitle: "A live website project",
+    subtitle: "A planner for time, habits, and training",
     description:
-      "A website project by Arian. Visit the live experience at nowastedtime.ir; a fuller project story can be added as the work is documented.",
+      "A bilingual planner that brings tasks, habits, and gym workouts together so you can see how you spend your time.",
     category: "Websites",
     status: "Live",
     visual: "time",
-    tags: ["Website", "Live project", "Digital experience"],
+    tags: ["Time management", "Habits", "Workout planning"],
     year: "2026",
     featured: true,
     liveUrl: "https://nowastedtime.ir/",
     details: {
       overview:
-        "A live website project published at nowastedtime.ir. This portfolio entry introduces the project and links directly to the website.",
+        "NOWastedTime brings your day into one view, with upcoming tasks, habits, and workout plans. Life Areas let you see how much time goes to study, work, health, and personal activities.",
       approach:
-        "The project is presented as a live digital experience. Detailed design decisions, implementation notes, and project goals can be added as the case study is documented.",
+        "Connect what you plan each day with what you want to understand over time, such as habit streaks, time spent in a Life Area, and progress at the gym.",
       features: [
-        "Public website available at nowastedtime.ir",
-        "Direct link to the live experience"
+        "Recurring tasks, calendar, and focus sessions",
+        "Life Area summaries and habit history",
+        "Workout plans and progress tracking",
+        "English and Farsi interfaces"
       ],
       nextSteps: [
         "Document the project's goals and intended audience",
@@ -79,7 +86,7 @@ export const projects: PortfolioItem[] = [
     title: "Tehran Online Shop",
     subtitle: "An online storefront project",
     description:
-      "An e-commerce page featured in my web work, focused on presenting an online shop experience. The public page link can be added once confirmed.",
+      "An online storefront project focused on making products easy to browse and compare.",
     category: "Websites",
     status: "In progress",
     visual: "storefront",
@@ -88,7 +95,7 @@ export const projects: PortfolioItem[] = [
     featured: true,
     details: {
       overview:
-        "An online shop page/project included in my website portfolio. Its public URL and a more detailed case study will be added when the final page address is confirmed.",
+        "Tehran Online Shop is an e-commerce project in progress. The storefront preview illustrates its product browsing layout.",
       approach:
         "The storefront direction emphasizes clear product presentation, easy browsing, and a straightforward path from discovery to enquiry or purchase.",
       features: [
@@ -108,22 +115,22 @@ export const projects: PortfolioItem[] = [
     title: "Mr. Biliard",
     subtitle: "A storefront for the game room",
     description:
-      "A Persian, right-to-left Django storefront with a filterable product catalogue and an installation enquiry workflow managed through Django admin.",
+      "A Persian-language billiards storefront with a filterable product catalogue and installation enquiries.",
     category: "Websites",
     status: "In progress",
     visual: "billiards",
-    tags: ["Django", "RTL storefront", "Product catalogue", "Enquiry workflow"],
+    tags: ["Persian storefront", "Product catalogue", "Installation enquiries"],
     year: "2026",
     sourceUrl: "https://github.com/ArianHero/tehran-shop-preview",
     details: {
       overview:
-        "A digital storefront for a billiards business. The project is described as a Persian RTL Django shop with a filterable catalogue and an installation-request inbox in Django admin.",
+        "A digital storefront for a billiards business, with a right-to-left catalogue and an inbox for installation requests.",
       approach:
         "The visual direction uses a deep billiard-green identity, clear product discovery, and direct enquiry paths so visitors can understand the offer and take the next step without clutter.",
       features: [
-        "Persian right-to-left Django storefront",
+        "Persian right-to-left storefront",
         "Filterable product catalogue",
-        "Installation enquiries managed in Django admin"
+        "Inbox for installation enquiries"
       ],
       nextSteps: [
         "Add the business's actual product inventory and photographs",
@@ -138,7 +145,7 @@ export const projects: PortfolioItem[] = [
     title: "NBA Knowledge Game",
     subtitle: "Basketball knowledge, made playable",
     description:
-      "An interactive basketball trivia experience built around question flows, score tracking, and the fun of knowing the game.",
+      "Play a five-question NBA trivia round covering rules and league history. Get feedback after each answer and see your final score.",
     category: "Experiments",
     status: "Prototype",
     visual: "basketball",
@@ -147,18 +154,16 @@ export const projects: PortfolioItem[] = [
     featured: true,
     details: {
       overview:
-        "A game concept that turns basketball knowledge into a short, interactive challenge. The current showcase is limited to the implemented prototype experience.",
+        "This playable prototype turns basketball knowledge into a short, interactive challenge.",
       approach:
         "Keep the core loop simple: present a question, let the player make a choice, and make progress visible through scoring and feedback.",
       features: [
-        "Interactive basketball questions",
-        "Question-and-answer flow",
-        "Score tracking"
+        "Five multiple-choice NBA questions",
+        "Answer explanations and a running score",
+        "Final score and replay"
       ],
       nextSteps: [
-        "Expand and validate the question bank",
-        "Polish feedback, replay, and progression states",
-        "Explore leaderboards or multiplayer only as future features"
+        "Expand the question bank with more teams, players, and eras"
       ]
     }
   },
@@ -198,7 +203,7 @@ export const projects: PortfolioItem[] = [
     title: "Trading Formula",
     subtitle: "A quantitative idea in development",
     description:
-      "An ongoing personal research project to develop a mathematical formula for analyzing market behavior and structuring trading decisions. It is still being developed; no profitability or performance claims are made.",
+      "Personal research in progress on a mathematical formula for analyzing market behavior and structuring trading decisions.",
     category: "Experiments",
     status: "In progress",
     visual: "trading",
@@ -206,19 +211,72 @@ export const projects: PortfolioItem[] = [
     year: "2026",
     details: {
       overview:
-        "I am developing a mathematical framework to study market behavior and support more structured trading analysis. The formula is a work in progress and has not been presented as a proven trading system.",
+        "I'm developing a mathematical formula to study market behavior and make the assumptions behind trading decisions explicit.",
       approach:
         "The work focuses on defining explicit inputs and assumptions, then testing the formula against historical data without confusing an attractive backtest with reliable out-of-sample evidence.",
       features: [
         "Formula and model development in progress",
-        "Research into market inputs and signals",
-        "No verified profitability claims or validated live results"
+        "Research into market inputs and signals"
       ],
       nextSteps: [
         "Define and document the formula's inputs and assumptions",
         "Test chronologically on data not used during development",
         "Evaluate transaction costs, slippage, liquidity, and robustness"
       ]
+    }
+  },
+  {
+    id: "everyday-traffic-violations",
+    number: "07",
+    title: "Everyday Traffic Violations in Tehran",
+    subtitle: "A literature review on driver behavior",
+    description: "A literature review in progress on common traffic violations in Tehran and the factors that shape drivers’ decisions.",
+    category: "Research",
+    status: "In progress",
+    visual: "traffic-study",
+    tags: ["Literature review", "Traffic behavior", "Tehran"],
+    year: "2026",
+    details: {
+      overview: "I'm reviewing research on everyday violations such as failing to signal and double parking, with a focus on why drivers make those decisions.",
+      approach: "Use the literature to guide questions for drivers soon after a violation, while the situation is still fresh in their minds.",
+      features: ["Literature review on everyday traffic violations", "Planned questionnaire focused on why a violation occurred"],
+      nextSteps: ["Complete the literature review", "Draft the questionnaire"]
+    }
+  },
+  {
+    id: "water-waste-in-tehran",
+    number: "08",
+    title: "Water Waste Across Tehran",
+    subtitle: "Conference paper in preparation",
+    description: "A conference paper in preparation that reviews the literature on water waste across different areas of Tehran.",
+    category: "Research",
+    status: "In progress",
+    visual: "water-study",
+    tags: ["Conference paper", "Water waste", "Tehran"],
+    year: "2026",
+    details: {
+      overview: "I'm preparing a conference paper on how water waste is documented in different parts of Tehran.",
+      approach: "Review available studies and compare what they cover across areas of the city.",
+      features: ["Literature review on water waste", "Comparison of coverage across parts of Tehran"],
+      nextSteps: ["Organize the sources by area", "Draft the conference paper"]
+    }
+  },
+  {
+    id: "traffic-violation-reporting-app",
+    number: "09",
+    title: "Traffic Violation Reporting App",
+    subtitle: "Online reporting for eyewitnesses",
+    description: "An app in progress that would let people report a traffic violation online after witnessing it.",
+    category: "Web Applications",
+    status: "In progress",
+    visual: "incident-report",
+    tags: ["Traffic reporting", "Public participation", "Web app"],
+    year: "2026",
+    details: {
+      overview: "I'm working on an online way for people to report traffic violations they see firsthand.",
+      approach: "Keep the reporting process short so a witness can describe what happened.",
+      features: ["Online submission of eyewitness reports as the planned core feature"],
+      nextSteps: ["Define what information the report needs", "Test the reporting flow"]
     }
   }
 ];
@@ -228,58 +286,23 @@ export const products = [
   projects.find((project) => project.id === "nba-knowledge-game")!
 ];
 
-export const services = [
+export const collaborationTopics = [
   {
     number: "01",
-    title: "Custom Website Development",
+    title: "Digital product ideas",
     description:
-      "Distinctive, responsive websites designed around your brand, audience, and business goals."
+      "Work through the problem, the audience, and what a first version could look like."
   },
   {
     number: "02",
-    title: "Interactive Web Applications",
+    title: "Website and storefront planning",
     description:
-      "Useful browser-based products with thoughtful flows, clear feedback, and maintainable foundations."
+      "Think through how visitors find products, compare options, and get in touch."
   },
   {
     number: "03",
-    title: "UI / UX Design",
+    title: "Product prototyping",
     description:
-      "Interfaces that make complex ideas easier to understand and everyday tasks easier to complete."
-  },
-  {
-    number: "04",
-    title: "Business Websites",
-    description:
-      "Professional digital storefronts that explain what you offer and make it easy to get in touch."
-  },
-  {
-    number: "05",
-    title: "Web Tools & Calculators",
-    description:
-      "Focused utilities that turn repetitive work, calculations, or decisions into simple workflows."
-  },
-  {
-    number: "06",
-    title: "Product Prototyping",
-    description:
-      "Early product experiences that help test an idea, communicate its value, and plan what comes next."
-  },
-  {
-    number: "07",
-    title: "Custom Software Solutions",
-    description:
-      "Purpose-built software for specific problems, from the first useful version to a scalable foundation."
+      "Explore how an early concept could work and what to test first."
   }
-];
-
-export const technologies = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "JavaScript",
-  "Python",
-  "Django",
-  "Three.js",
-  "Figma"
 ];

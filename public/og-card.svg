@@ -5,7 +5,7 @@
   <circle cx="920" cy="310" r="135" fill="none" stroke="#77d6df" stroke-width="2" opacity=".4" transform="rotate(45 920 310)"/>
   <path d="M815 310c0-83 48-148 111-148s111 65 111 148-48 148-111 148-111-65-111-148z" fill="none" stroke="#c8c2ff" stroke-width="25" opacity=".8" transform="rotate(35 920 310)"/>
   <text x="84" y="112" fill="#a8a0f6" font-family="Arial,sans-serif" font-size="18" letter-spacing="5">ENGINEERING MINDSET / DIGITAL PRODUCTS</text>
-  <text x="80" y="300" fill="#f5f3ff" font-family="Arial,sans-serif" font-size="82" font-weight="700">Engineering thinking,</text>
-  <text x="80" y="395" fill="#aaa2ff" font-family="Arial,sans-serif" font-size="82" font-weight="700">digital experiences.</text>
-  <text x="84" y="480" fill="#a5a6b8" font-family="Arial,sans-serif" font-size="24">Arian Haghani — Civil Engineering Student · Basketball Lover · Product Builder</text>
+  <text x="80" y="300" fill="#f5f3ff" font-family="Arial,sans-serif" font-size="82" font-weight="700">Arian Haghani</text>
+  <text x="84" y="375" fill="#aaa2ff" font-family="Arial,sans-serif" font-size="38" font-weight="700">Civil Engineering Student</text>
+  <text x="84" y="435" fill="#a5a6b8" font-family="Arial,sans-serif" font-size="25">Amirkabir University of Technology</text>
 </svg>

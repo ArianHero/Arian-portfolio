@@ -1,37 +1,46 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { basePath, siteConfig, siteUrl } from "@/lib/site-config";
 import "./globals.css";
 
+const title = "Arian Haghani — Civil Engineering Student & Digital Product Builder";
+const previewImage = {
+  url: new URL("og-card.png", siteUrl),
+  width: 1200,
+  height: 630,
+  alt: "Arian Haghani, Civil Engineering student at Amirkabir University of Technology"
+};
+
 export const metadata: Metadata = {
-  title: "Arian Haghani — Civil Engineering Student & Digital Product Builder",
-  description:
-    "Arian Haghani is a Civil Engineering student at Amirkabir University of Technology, developer, basketball lover, and product builder creating websites, digital products, and new ideas.",
+  title,
+  description: siteConfig.description,
   applicationName: "Arian Haghani Portfolio",
-  icons: { icon: "/favicon.svg" },
+  metadataBase: siteUrl,
+  alternates: { canonical: siteUrl.href },
+  icons: { icon: `${basePath}/favicon.svg` },
   keywords: [
     "Arian Haghani",
     "Amirkabir University of Technology",
     "Civil Engineering student",
-    "developer portfolio",
-    "web development",
+    "student portfolio",
+    "entrepreneurship",
     "product design",
     "basketball",
     "digital products",
     "trading formula research"
   ],
   openGraph: {
-    title: "Arian Haghani — Civil Engineering Student & Digital Product Builder",
-    description:
-      "Civil Engineering at Amirkabir University of Technology, digital projects, product ideas, basketball, and ongoing experiments.",
+    title,
+    description: siteConfig.description,
+    url: siteUrl,
     type: "website",
-    images: ["/og-card.svg"]
+    images: [previewImage]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arian Haghani — Civil Engineering Student & Digital Product Builder",
-    description:
-      "Civil Engineering at Amirkabir University of Technology, digital projects, product ideas, basketball, and ongoing experiments.",
-    images: ["/og-card.svg"]
+    title,
+    description: siteConfig.description,
+    images: [previewImage]
   }
 };
 
